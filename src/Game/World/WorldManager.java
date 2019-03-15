@@ -2,6 +2,7 @@ package Game.World;
 
 import Game.Entities.EntityManager;
 import Game.Entities.Statics.SmokeHouse;
+import Game.Entities.Statics.JirachiEntity;
 import Game.Entities.Statics.Tree;
 import Input.MouseManager.Circle;
 import Main.GameSetUp;
@@ -37,6 +38,9 @@ public class WorldManager {
 		this.entityManager.AddEntity(new Tree(handler, 600, 600));
 		this.entityManager.AddEntity(new SmokeHouse(handler, 1153, 335));
 
+		this.entityManager.AddEntity(new JirachiEntity(handler, 1665, 60)); //THIS IS WHERE JIRACHI WILL BE SET 0
+
+		
 		this.entityManager.AddEntity(handler.newEnemy(Images.PEnemyIdle,handler,500, 800,"MapState","Jovan","None","EnemyOne",100,25,40,1,8,12,20,10,20,10,1,5,"None","Fire",null,null)); // lvl 0 dificulty
 		this.entityManager.AddEntity(handler.newEnemy(Images.PEnemyIdle,handler,1400, 600,"MapState","Common Rat","None","EnemyOne",100,25,40,1,8,12,20,10,20,10,1,5,"None","Fire",null,null)); // lvl 0 dificulty
 		this.entityManager.AddEntity(handler.newEnemy(Images.PEnemyIdle,handler,2400, -200,"MapState","Common Rat","None","EnemyOne",100,25,40,1,8,12,20,10,20,10,1,5,"None","Fire",null,null)); // lvl 0 dificulty
@@ -71,7 +75,7 @@ public class WorldManager {
 		g2.setFont(new Font("AR ESSENCE", Font.PLAIN, 100));
 		g2.drawString(this.getString(), this.xPos,this.yPos);
 
-		if(GameSetUp.DEBUGMODE){
+		if(!GameSetUp.DEBUGMODE){
 
 			g2.setColor(Color.BLACK);
 			g2.draw(rectangle);
@@ -132,10 +136,12 @@ public class WorldManager {
 		worldWalls.add(new Walls(handler, 1980, -350, 50, 50, "Wall"));
 		worldWalls.add(new Walls(handler, 1950, -250, 200, 100, "Wall"));	
 		worldWalls.add(new Walls(handler, 1960, -150, 120, 100, "Wall"));
-
-		worldWalls.add(new Walls(handler, 1662, 55, 50, 50, "Door Cave"));
+		  // LOCATION OF CAVE ENTRANCE
+		worldWalls.add(new Walls(handler, 1662, 55, 50, 50, "Door Cave")); 
 		worldWalls.add(new Walls(handler, (int) circle.getXOffset(),(int) 
 				circle.getYOffset(), 20, 20, "Door S"));	
+		// SET 1 RECTANGLES FOR TOWN ENTRANCE
+		worldWalls.add(new Walls(handler, 1053, 400, 275, 300, "Town Entrance"));
 
 		///Left Mountains
 		worldWalls.add(new Walls(handler, 700, 180, 140, 200, "Wall"));

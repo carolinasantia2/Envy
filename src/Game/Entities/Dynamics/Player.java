@@ -9,6 +9,7 @@ import Game.GameStates.State;
 import Game.World.Walls;
 import Game.World.InWorldAreas.CaveArea;
 import Game.World.InWorldAreas.InWorldWalls;
+import Game.World.InWorldAreas.TownArea;
 import Main.GameSetUp;
 import Main.Handler;
 import Resources.Animation;
@@ -32,6 +33,7 @@ public class Player extends BaseDynamicEntity implements Fighter {
 	public static boolean isinArea = false;
 	private boolean weakenS = false;
 	private int switchingCoolDown = 0;
+	public boolean questComplete = false; // SET 0 SKILL/CAVE
 
 	// Animations
 	private Animation animDown, animUp, animLeft, animRight;
@@ -191,7 +193,25 @@ public class Player extends BaseDynamicEntity implements Fighter {
 			for (Walls w : handler.getWorldManager().getWalls()) {
 
 				if (nextArea.intersects(w)) {
-
+					
+					 if(w.getType().equals("Town Entrance")){  // TESTING IF TOWN ENTRANCE WORKS
+						 checkInWorld = true;
+							InWorldState.caveArea.oldPlayerXCoord = (int) (handler.getXDisplacement());
+							InWorldState.caveArea.oldPlayerYCoord = (int) (handler.getYDisplacement());
+							TownArea.isInTown = true;
+							setWidthAndHeight(InAreaWidthFrontAndBack, InAreaHeightFront);
+							handler.setXInWorldDisplacement(TownArea.playerXSpawn);
+							handler.setYInWorldDisplacement(TownArea.playerYSpawn);
+							GameSetUp.LOADING = true;
+							handler.setArea("Town");
+							
+	                        handler.getGame().getMusicHandler().set_changeMusic("res/music/Cave.mp3");
+	                        handler.getGame().getMusicHandler().play();
+	                        handler.getGame().getMusicHandler().setVolume(0.4);
+							
+							State.setState(handler.getGame().inWorldState.setArea(InWorldState.townArea));
+					 }
+					  
 					if (w.getType().equals("Wall")) {
 						PushPlayerBack();
 					}
@@ -199,7 +219,7 @@ public class Player extends BaseDynamicEntity implements Fighter {
 					else if (w.getType().startsWith("Door")) {
 						canMove = true;
 
-						if (w.getType().equals("Door Cave")) {
+						if (w.getType().equals("Door Cave") && handler.getEntityManager().getPlayer().questComplete) {  //FIXED: add quest check.
 							checkInWorld = true;
 							InWorldState.caveArea.oldPlayerXCoord = (int) (handler.getXDisplacement());
 							InWorldState.caveArea.oldPlayerYCoord = (int) (handler.getYDisplacement());
@@ -256,7 +276,7 @@ public class Player extends BaseDynamicEntity implements Fighter {
 							GameSetUp.LOADING = true;
 							handler.setArea("None");
 							
-	                    	handler.getGame().getMusicHandler().set_changeMusic("res/music/OverWorld.mp3");
+	                    	handler.getGame().getMusicHandler().set_changeMusic("res/music/Overworld.mp3");
 	                        handler.getGame().getMusicHandler().play();
 	                        handler.getGame().getMusicHandler().setVolume(0.2);
 							

@@ -88,10 +88,13 @@ public class Images {
 	public static BufferedImage[] SItem;
 
 	public static BufferedImage CaveMap;
+	public static BufferedImage TownMap; // ADDED SET 1
 	public static BufferedImage Loading;
 	public static Image ScaledCave;
 	public static Image ScaledArea;
+	public static Image TownArea; // ADDED SET 1 TOWN
 	public static BufferedImage tree;
+	public static BufferedImage Jirachi; // ADDED SET 0
 
 	public Images() {
 
@@ -103,8 +106,8 @@ public class Images {
 		Resume = new BufferedImage[2];
 		Quit = new BufferedImage[2];
 		
-		map = new BufferedImage[4];
-		Scaledmap = new Image[3];
+		map = new BufferedImage[1];
+		Scaledmap = new Image[1];
 
 		battleBackground = new BufferedImage[4];
 
@@ -139,8 +142,8 @@ public class Images {
 		try {
 			
 			map[0] = ImageIO.read(getClass().getResourceAsStream("/Worlds/map.png"));
-			map[1] = ImageIO.read(getClass().getResourceAsStream("/Worlds/map2.png"));
-			map[2] = ImageIO.read(getClass().getResourceAsStream("/Worlds/map3.png"));
+//			map[1] = ImageIO.read(getClass().getResourceAsStream("/Worlds/map2.png"));
+//			map[2] = ImageIO.read(getClass().getResourceAsStream("/Worlds/map3.png"));
 			
 			smokeHouseSheet = new SpriteSheet(ImageIO.read(getClass().getResourceAsStream("/Sheets/House.png")));
 			statueSheet = new SpriteSheet(ImageIO.read(getClass().getResourceAsStream("/Sheets/statueSheet.png")));
@@ -158,7 +161,9 @@ public class Images {
 
 
 			CaveMap = ImageIO.read(getClass().getResourceAsStream("/Worlds/CaveMap.png"));
+			TownMap = ImageIO.read(getClass().getResourceAsStream("/Worlds/ViridianCity.png")); // ADDED SET 1 
 			tree = ImageIO.read(getClass().getResourceAsStream("/Sheets/Tree.png"));
+			Jirachi = ImageIO.read(getClass().getResourceAsStream("/Sheets/Jirachi.png")); // ADDED SET 0
 			title = ImageIO.read(getClass().getResourceAsStream("/Sheets/menuImage.png"));
 			title2 = ImageIO.read(getClass().getResourceAsStream("/Sheets/Title.png"));
 			title3 = ImageIO.read(getClass().getResourceAsStream("/Sheets/static.jpg"));
@@ -710,15 +715,16 @@ public class Images {
 		}
 		
 		Scaledmap[0] = Images.map[0].getScaledInstance(8000, 6000, Image.SCALE_SMOOTH);
-		Scaledmap[1] = Images.map[1].getScaledInstance(8000, 6000, Image.SCALE_SMOOTH);
-		Scaledmap[2] = Images.map[2].getScaledInstance(8000, 6000, Image.SCALE_SMOOTH);
+//		Scaledmap[1] = Images.map[1].getScaledInstance(8000, 6000, Image.SCALE_SMOOTH);
+//		Scaledmap[2] = Images.map[2].getScaledInstance(8000, 6000, Image.SCALE_SMOOTH);
 		
 		map[0] = toBufferedImage(Scaledmap[0]); 
-		map[1] = toBufferedImage(Scaledmap[1]);
-		map[2] = toBufferedImage(Scaledmap[2]);
-		map[3] = toBufferedImage(Scaledmap[1]);
+//		map[1] = toBufferedImage(Scaledmap[1]);
+//		map[2] = toBufferedImage(Scaledmap[2]);
+//		map[3] = toBufferedImage(Scaledmap[1]);
 		
 		ScaledCave = Images.CaveMap.getScaledInstance(3680, 4000, Image.SCALE_SMOOTH); // 368x400 pixel image
+		TownArea = Images.TownMap.getScaledInstance(3680, 4000, Image.SCALE_SMOOTH); // ADDED SET 1 
 
 	}
 
