@@ -9,6 +9,7 @@ import Game.GameStates.State;
 import Game.World.Walls;
 import Game.World.InWorldAreas.CaveArea;
 import Game.World.InWorldAreas.InWorldWalls;
+import Input.KeyManager;
 import Main.GameSetUp;
 import Main.Handler;
 import Resources.Animation;
@@ -32,6 +33,7 @@ public class Player extends BaseDynamicEntity implements Fighter {
 	public static boolean isinArea = false;
 	private boolean weakenS = false;
 	private int switchingCoolDown = 0;
+	private KeyManager keyManager; 
 
 	// Animations
 	private Animation animDown, animUp, animLeft, animRight;
@@ -145,6 +147,7 @@ public class Player extends BaseDynamicEntity implements Fighter {
 				speed = 8;
 			}
 		}
+		
 
 		CheckForWalls();
 
@@ -569,6 +572,9 @@ public class Player extends BaseDynamicEntity implements Fighter {
 	public double getLvlUpXp() {
 		return lvlUpExp;
 	}
+	public KeyManager getKeyManager(){ //jose
+        return keyManager;
+    }
 	
 	private void levelUP() {
 		if(xp >= lvlUpExp) {

@@ -49,6 +49,7 @@ public class GameSetUp implements Runnable {
     //Res.music
     private MusicHandler musicHandler;
 
+
     public final static String[] resList = {"res/icons/clips/FCTM.wav","res/icons/clips/FFM.wav","res/icons/clips/FIL.wav","res/icons/clips/FITR.wav","res/icons/clips/FLFWDF.wav","res/icons/clips/FWIAS.wav"};
 
     private BufferedImage loading;
@@ -146,6 +147,9 @@ public class GameSetUp implements Runnable {
         if(State.getState() != null) {
             State.getState().tick();
         }
+        if(handler.getKeyManager().debugbutt) { 
+        	DEBUGMODE=true;
+        }
 
     }
 
@@ -207,5 +211,6 @@ public class GameSetUp implements Runnable {
     public void setDisplay(DisplayScreen display) {
         this.display = display;
     }
+    
 }
 

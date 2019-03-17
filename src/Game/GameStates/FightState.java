@@ -121,7 +121,10 @@ public class FightState extends InWorldState{
         if(!enemy.PEnemyIdle.getCurrentFrame().equals(null)) {
             enemy.PEnemyIdle.tick();
         }
-
+        if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_H)) { 
+        	handler.getEntityManager().getPlayer().setMana(handler.getEntityManager().getPlayer().getMaxMana());
+        	handler.getEntityManager().getPlayer().setHealth(handler.getEntityManager().getPlayer().getMaxHealth());
+        }
         ///TEMP CODE TO EXIT FIGHT///
         if (handler.getKeyManager().keyJustPressed(KeyEvent.VK_ESCAPE)) {
             handler.getGame().pauseState.lastState = State.getState();
