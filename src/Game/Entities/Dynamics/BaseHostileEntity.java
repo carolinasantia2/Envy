@@ -175,7 +175,7 @@ public class BaseHostileEntity extends BaseDynamicEntity implements Fighter{
 			chaseSpeed = 1.5;
 		}
 		else {
-			chaseSpeed = 5;
+			chaseSpeed = 0.25; // was 5
 		}
 	}
 

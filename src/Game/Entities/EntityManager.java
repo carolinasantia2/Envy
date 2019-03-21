@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import Game.Entities.Dynamics.BaseHostileEntity;
 import Game.Entities.Dynamics.Player;
 import Game.Entities.Statics.BaseStaticEntity;
+import Game.Entities.Statics.JirachiEntity;
 import Main.GameSetUp;
 import Main.Handler;
 
@@ -48,7 +49,7 @@ public class EntityManager {
 		
 		if ( player.getCollision().intersects(e.getCollision())&&!GameSetUp.SWITCHING) {
 			
-			if (e instanceof BaseStaticEntity){
+			if (e instanceof BaseStaticEntity && !(e instanceof JirachiEntity)){
 				player.WallBoundary(e.getXOffset());
 			}
 
@@ -83,6 +84,10 @@ public class EntityManager {
 
 	public void RemoveEntity(BaseEntity e) {
 		entities.remove(e);
+	}
+	
+	public ArrayList<BaseEntity> getEntities(){
+		return this.entities;
 	}
 
 	public Player getPlayer() {
