@@ -30,7 +30,8 @@ public class JirachiEntity extends BaseStaticEntity {
 	public void render(Graphics g) {
 
 		Graphics2D g2 = (Graphics2D) g;
-		g.drawImage(Images.Jirachi, (int)(handler.getXDisplacement() + xPosition),(int)(handler.getYDisplacement() + yPosition), width, height, null);
+		if(!handler.getEntityManager().getPlayer().questComplete)
+			g.drawImage(Images.Jirachi, (int)(handler.getXDisplacement() + xPosition),(int)(handler.getYDisplacement() + yPosition), width, height, null);
 		collision = new Rectangle((int)(handler.getXDisplacement() + xPosition), (int)(handler.getYDisplacement() + yPosition + 30), width, height);
 		if(this.handler.getEntityManager().getPlayer().getCollision().intersects(this.getCollision())) {
 			if(!handler.getEntityManager().getPlayer().questComplete){

@@ -8,6 +8,7 @@ import Resources.Images;
 import Resources.MusicHandler;
 
 import java.awt.*;
+import java.awt.event.KeyEvent;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 
@@ -148,8 +149,12 @@ public class GameSetUp implements Runnable {
             State.getState().tick();
         }
         if(handler.getKeyManager().debugbutt) { 
-        	DEBUGMODE=true;
+        	DEBUGMODE=true;	
         }
+        
+        //test quest
+        if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_P))
+        	handler.getEntityManager().getPlayer().questComplete = true;
 
     }
 
