@@ -208,8 +208,8 @@ public class Player extends BaseDynamicEntity implements Fighter {
 
 					if(w.getType().equals("Town Entrance")){  // TESTING IF TOWN ENTRANCE WORKS
 						checkInWorld = true;
-						InWorldState.caveArea.oldPlayerXCoord = (int) (handler.getXDisplacement());
-						InWorldState.caveArea.oldPlayerYCoord = (int) (handler.getYDisplacement());
+						InWorldState.townArea.oldPlayerXCoord = (int) (handler.getXDisplacement());
+						InWorldState.townArea.oldPlayerYCoord = (int) (handler.getYDisplacement());
 						TownArea.isInTown = true;
 						setWidthAndHeight(InAreaWidthFrontAndBack, InAreaHeightFront);
 						handler.setXInWorldDisplacement(TownArea.playerXSpawn);
@@ -248,7 +248,6 @@ public class Player extends BaseDynamicEntity implements Fighter {
 							State.setState(handler.getGame().inWorldState.setArea(InWorldState.caveArea));
 						}
 
-
 						if (w.getType().equals("Door S")) {
 							checkInWorld = true;
 							InWorldState.SArea.oldPlayerXCoord = (int) (handler.getXDisplacement());
@@ -261,6 +260,7 @@ public class Player extends BaseDynamicEntity implements Fighter {
 						}
 
 					} 
+					
 
 				}
 
@@ -310,6 +310,41 @@ public class Player extends BaseDynamicEntity implements Fighter {
 						if (iw.getType().equals("Wall"))
 							PushPlayerBack();
 
+					}
+				}
+			}
+			else if (TownArea.isInTown) {       // ADDS COLLISIONS IN TOWN AREA
+				for (InWorldWalls iw : TownArea.townWalls) {
+					if (nextArea.intersects(iw)) {
+						if (iw.getType().equals("Wall"))
+							PushPlayerBack();
+						else {
+
+							if (iw.getType().equals("Start Exit")) {
+
+								handler.setXDisplacement(handler.getXDisplacement() - 450); // Sets the player x/y
+								// outside the
+								handler.setYDisplacement(handler.getYDisplacement() + 400); // Cave
+
+							} else if (iw.getType().equals("End Exit")) {
+
+								handler.setXDisplacement(InWorldState.caveArea.oldPlayerXCoord);// Sets the player x/y
+								handler.setYDisplacement(InWorldState.caveArea.oldPlayerYCoord);// outside theCave
+							}
+
+							GameSetUp.LOADING = true;
+							handler.setArea("None");
+
+							handler.getGame().getMusicHandler().set_changeMusic("res/music/Overworld.mp3");
+							handler.getGame().getMusicHandler().play();
+							handler.getGame().getMusicHandler().setVolume(0.2);
+
+							State.setState(handler.getGame().mapState);
+							TownArea.isInTown = false;
+							checkInWorld = false;
+							System.out.println("Left Cave");
+							setWidthAndHeight(InMapWidthFrontAndBack, InMapHeightFront);
+						}
 					}
 				}
 			}
