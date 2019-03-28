@@ -113,7 +113,7 @@ public class Player extends BaseDynamicEntity implements Fighter {
 
 		player = new Rectangle((int) xPosition, (int) yPosition+(currentHeight/2)+5, currentWidth-3, currentHeight/2);
 
-		if (!GameSetUp.DEBUGMODE) {
+		if (GameSetUp.DEBUGMODE) {
 			g2.draw(nextArea);
 			g2.draw(getCollision());
 		}
@@ -322,9 +322,9 @@ public class Player extends BaseDynamicEntity implements Fighter {
 
 							if (iw.getType().equals("Start Exit")) {
 
-								handler.setXDisplacement(handler.getXDisplacement() - 450); // Sets the player x/y
+								handler.setXDisplacement(handler.getXDisplacement() + 200); // Sets the player x/y
 								// outside the
-								handler.setYDisplacement(handler.getYDisplacement() + 400); // Cave
+								handler.setYDisplacement(handler.getYDisplacement() + 200); // Cave
 
 							} else if (iw.getType().equals("End Exit")) {
 

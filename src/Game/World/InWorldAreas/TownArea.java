@@ -90,11 +90,12 @@ public class TownArea extends BaseArea {
     private void AddWalls() {
 
 
-        townWalls.add(new InWorldWalls(handler, imageWidth/2 - 200, imageHeight-30, 450, 30, "Start Exit"));								
+        townWalls.add(new InWorldWalls(handler, imageWidth/2 - 150, imageHeight-30, 300, 30, "Start Exit"));	
+        townWalls.add(new InWorldWalls(handler, imageWidth/2 + 150, imageHeight-500, 5000, 500, "Wall"));
+        townWalls.add(new InWorldWalls(handler, imageWidth/2 + 1400, imageHeight-4000, 500, imageHeight, "Wall"));
+        townWalls.add(new InWorldWalls(handler, imageWidth/2 + 50, imageHeight-4100, 5000, 500, "Wall"));
+        townWalls.add(new InWorldWalls(handler, imageWidth/2 - 1750, imageHeight-4000, 1400, 500, "Wall"));
        
-
-
-
     }
 
     @Override
