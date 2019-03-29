@@ -10,7 +10,7 @@ import Resources.Images;
 
 public class JirachiEntity extends BaseStaticEntity {
 
-	Rectangle collision;
+	 Rectangle collision;
 	int width, height;
 
 	public JirachiEntity(Handler handler, int xPosition, int yPosition) {

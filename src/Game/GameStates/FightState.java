@@ -226,6 +226,10 @@ public class FightState extends InWorldState{
 				}
 				enemy.kill();
 				inStateEnemy.kill();
+				
+				if (enemy.getName().equals("Fernando")) {
+					handler.getEntityManager().getPlayer().questComplete = true;
+				}
 			}
 			if(alpha>=254){
 				if(handler.getEntityManager().getPlayer().getHealth()==0){

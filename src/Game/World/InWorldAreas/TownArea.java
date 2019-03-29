@@ -7,6 +7,7 @@ import java.awt.*;
 import java.util.ArrayList;
 
 import Game.Entities.EntityManager;
+import Game.Entities.Dynamics.Dawn;
 import Game.Entities.Statics.LightStatue;
 import Game.World.Walls;
 
@@ -17,8 +18,7 @@ public class TownArea extends BaseArea {
     public static boolean isInTown = false;
 
     private int imageWidth = 3680, imageHeight = 4000;
-    public final static int playerXSpawn = -850, playerYSpawn = -3180
-    		;
+    public final static int playerXSpawn = -850, playerYSpawn = -3180;
 
     private Rectangle background = new Rectangle(3000, 3000);
 
@@ -33,13 +33,7 @@ public class TownArea extends BaseArea {
         playerRect = new Rectangle((int) handler.getWidth() / 2 - 5, (int) (handler.getHeight() / 2) + 300, 70, 70);
 
         this.entityManager = entityManager;
-
-        
-
-        this.entityManager.AddEntity(handler.newEnemy(Images.PEnemyIdle,handler,700, 2000,"InWorldState","Sergio","Cave","EnemyOne",150,25,80,1,8,12,20,10,20,10,1,10,"None","Thunder",null,null)); //lvl 2 difficulty
-        this.entityManager.AddEntity(handler.newEnemy(Images.PEnemyIdle,handler,3000, 1000,"InWorldState","Cave Dweller","Cave","EnemyOne",100,25,60,10,1,12,20,10,20,13,1,10,"None","Thunder",null,null)); // lvl 1 difficulty
-
-        this.entityManager.AddEntity(new LightStatue (handler, 2080, 1770));
+        this.entityManager.AddEntity(new Dawn (handler, imageWidth/3, imageHeight/2+200));
         
         townWalls = new ArrayList<>();
         AddWalls();
@@ -95,6 +89,9 @@ public class TownArea extends BaseArea {
         townWalls.add(new InWorldWalls(handler, imageWidth/2 + 1400, imageHeight-4000, 500, imageHeight, "Wall"));
         townWalls.add(new InWorldWalls(handler, imageWidth/2 + 50, imageHeight-4100, 5000, 500, "Wall"));
         townWalls.add(new InWorldWalls(handler, imageWidth/2 - 1750, imageHeight-4000, 1400, 500, "Wall"));
+        
+        townWalls.add(new InWorldWalls(handler, imageWidth/3, imageHeight/2+200, 16 * 5 + 30, 48 * 2 + 24 + 20, "Wall"));
+
        
     }
 

@@ -446,6 +446,9 @@ public class BaseHostileEntity extends BaseDynamicEntity implements Fighter{
 			xp += 20 *(lvl);
     	}
     }
+    public String getName() { // ADDED
+    	return name;
+    }
 
 
 
