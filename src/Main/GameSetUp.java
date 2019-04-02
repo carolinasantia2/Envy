@@ -148,10 +148,12 @@ public class GameSetUp implements Runnable {
         if(State.getState() != null) {
             State.getState().tick();
         }
-        if(handler.getKeyManager().debugbutt) { 
-        	DEBUGMODE=true;	
+        if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_F7) && !DEBUGMODE) { 
+        	DEBUGMODE = true;	
         }
-        
+        else if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_F7) && DEBUGMODE) {
+        	DEBUGMODE = false;
+        }
         //test quest
         if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_P))
         	handler.getEntityManager().getPlayer().questComplete = true;
