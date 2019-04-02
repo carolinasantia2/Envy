@@ -44,6 +44,7 @@ public class Player extends BaseDynamicEntity implements Fighter {
 	private int switchingCoolDown = 0;
 	private KeyManager keyManager; 
 	public boolean questComplete = false; // SET 0 SKILL/CAVE
+	public boolean enemyKilled = false; // if true, player must return to dynamic entity to receive "rewards"
 
 	// Animations
 	private Animation animDown, animUp, animLeft, animRight;
@@ -212,7 +213,7 @@ public class Player extends BaseDynamicEntity implements Fighter {
 						InWorldState.townArea.oldPlayerYCoord = (int) (handler.getYDisplacement());
 						TownArea.isInTown = true;
 						setWidthAndHeight(InAreaWidthFrontAndBack, InAreaHeightFront);
-						handler.setXInWorldDisplacement(TownArea.playerXSpawn);
+						handler.setXInWorldDisplacement(TownArea.playerXSpawn - 150);
 						handler.setYInWorldDisplacement(TownArea.playerYSpawn);
 						GameSetUp.LOADING = true;
 						handler.setArea("Town");
@@ -322,9 +323,8 @@ public class Player extends BaseDynamicEntity implements Fighter {
 
 							if (iw.getType().equals("Start Exit")) {
 
-								handler.setXDisplacement(handler.getXDisplacement() + 200); // Sets the player x/y
-								// outside the
-								handler.setYDisplacement(handler.getYDisplacement() + 200); // Cave
+								handler.setXDisplacement(handler.getXDisplacement() + 200); // Sets the player x/y town entrance
+								handler.setYDisplacement(handler.getYDisplacement() + 200); 
 
 							} else if (iw.getType().equals("End Exit")) {
 

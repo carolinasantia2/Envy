@@ -227,8 +227,8 @@ public class FightState extends InWorldState{
 				enemy.kill();
 				inStateEnemy.kill();
 				
-				if (enemy.getName().equals("Fernando")) {
-					handler.getEntityManager().getPlayer().questComplete = true;
+				if (enemy.getName().equals("Fernando")) { // change boolean
+					handler.getEntityManager().getPlayer().enemyKilled = true;
 				}
 			}
 			if(alpha>=254){
@@ -503,8 +503,9 @@ public class FightState extends InWorldState{
 		uiManager.addObjects(new UIImageButton(handler.getWidth() * 38/60 - 128/2, 5*handler.getHeight()/6, 128, 64, Images.Skill, new ClickListlener() {
 			@Override
 			public void onClick() {
-				if(handler.getEntityManager().getPlayer().getMana()>=25) {
+				if(handler.getEntityManager().getPlayer().getMana()>=25 && handler.getEntityManager().getPlayer().getSkill().equals("none")) {
 					System.out.println("Skill");
+					handler.getEntityManager().getPlayer().setSkill("ice");
 					skill = true;
 				}
 
@@ -645,7 +646,7 @@ public class FightState extends InWorldState{
 	
 	private void callSkill(Graphics g) {
 
-		if(handler.getEntityManager().getPlayer().questComplete) {
+		
 			playerIceSkill.tick();
 
 			g.setColor( new Color(Math.max(0,red--),Math.max(0, green--),Math.max(0, blue--)));
@@ -693,7 +694,7 @@ public class FightState extends InWorldState{
 					EisDefense = false;
 				}
 			}
-		}
+		
 	}
 
 	private void enemyTurn() {  

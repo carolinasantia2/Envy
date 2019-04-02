@@ -95,6 +95,7 @@ public class Images {
 	public static Image TownArea; // ADDED SET 1 TOWN
 	public static BufferedImage tree;
 	public static BufferedImage Jirachi; // ADDED SET 0
+	public static BufferedImage ShinyJirachi; // ADDED SET 2
 
 	public Images() {
 
@@ -164,6 +165,7 @@ public class Images {
 			TownMap = ImageIO.read(getClass().getResourceAsStream("/Worlds/ViridianCity.png")); // ADDED SET 1 
 			tree = ImageIO.read(getClass().getResourceAsStream("/Sheets/Tree.png"));
 			Jirachi = ImageIO.read(getClass().getResourceAsStream("/Sheets/Jirachi.png")); // ADDED SET 0
+			ShinyJirachi = ImageIO.read(getClass().getResourceAsStream("/Sheets/ShinyJirachi.png")); // ADDED SET 2
 			title = ImageIO.read(getClass().getResourceAsStream("/Sheets/menuImage.png"));
 			title2 = ImageIO.read(getClass().getResourceAsStream("/Sheets/Title.png"));
 			title3 = ImageIO.read(getClass().getResourceAsStream("/Sheets/static.jpg"));
